@@ -1,0 +1,1459 @@
+{
+  "Components": {
+    "301_PUMP_BLOCK": {
+      "Type": "SubCircuit",
+      "Components": {
+        "201_PUMP": {
+          "Type": "Pump",
+          "Displacement": 4.09e-06,
+          "EfficiencyVolumetric": 0.94,
+          "EfficiencyMechanical": 0.94,
+          "Inputs": [
+            {
+              "Name": "201_PUMP_RPM",
+              "Type": "RPM"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "201_PUMP_Torque",
+              "Type": "Torque"
+            },
+            {
+              "Name": "201_PUMP_Flowrate",
+              "Type": "Flowrate"
+            }
+          ]
+        },
+        "P1D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "P1D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "P1DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P1DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P1DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P2D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "P2D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "P2DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P2DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P2DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P3D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "P3D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "P3DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P3DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P3DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P2C": {
+          "Type": "CV_rk1",
+          "Outputs": [
+            {
+              "Name": "P2CFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P2CPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P2CPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P3C": {
+          "Type": "CV_rk1",
+          "Outputs": [
+            {
+              "Name": "P3CFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P3CPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P3CPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P1R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "P1RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P1RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P1RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P2R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 50000000.0,
+          "Outputs": [
+            {
+              "Name": "P2RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P2RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P2RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P1D_Orifice": {
+          "Type": "Orifice",
+          "Diameter": 0.0015,
+          "alpha": 0.65,
+          "MinQForLinearisation": 3.33333e-06,
+          "Outputs": [
+            {
+              "Name": "P1D_OrificeFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P1D_OrificePressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P1D_OrificePressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "P2D_Orifice": {
+          "Type": "Orifice",
+          "Diameter": 0.0015,
+          "alpha": 0.65,
+          "MinQForLinearisation": 3.33333e-06,
+          "Outputs": [
+            {
+              "Name": "P2D_OrificeFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "P2D_OrificePressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "P2D_OrificePressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "branch_TPP1": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_201_PUMP",
+            "to_P2C",
+            "to_P3C"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPP1",
+              "Type": "Pressure",
+              "Location": "from_201_PUMP"
+            }
+          ]
+        },
+        "branch_TPP2": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_P3C",
+            "to_P2D",
+            "to_P2R",
+            "to_branch_HP_302",
+            "to_M1C"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPP2",
+              "Type": "Pressure",
+              "Location": "from_P3C"
+            }
+          ]
+        },
+        "branch_TPP3": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_P3D",
+            "to_P1R",
+            "to_P1D_Orifice",
+            "to_branch_LP_302"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPP3",
+              "Type": "Pressure",
+              "Location": "from_P3D"
+            }
+          ]
+        },
+        "branch_TPP4": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_P1D",
+            "from_P1R",
+            "from_P2D_Orifice",
+            "from_P2R",
+            "to_branch_Tank"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPP4",
+              "Type": "Pressure",
+              "Location": "from_P1D"
+            }
+          ]
+        }
+      },
+      "Connections": {
+        "201_PUMP_to_branch_TPP1": {
+          "Type": "Direct",
+          "Inlet": "201_PUMP.out",
+          "Outlet": "branch_TPP1.from_201_PUMP"
+        },
+        "branch_TPP1_to_P2C": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP1.to_P2C",
+          "Outlet": "P2C.in"
+        },
+        "branch_TPP1_to_P3C": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP1.to_P3C",
+          "Outlet": "P3C.in"
+        },
+        "P2C_to_P3D": {
+          "Type": "Direct",
+          "Inlet": "P2C.out",
+          "Outlet": "P3D.in"
+        },
+        "P3D_to_branch_TPP3": {
+          "Type": "Direct",
+          "Inlet": "P3D.out",
+          "Outlet": "branch_TPP3.from_P3D"
+        },
+        "branch_TPP3_to_P1R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP3.to_P1R",
+          "Outlet": "P1R.in"
+        },
+        "branch_TPP3_to_P1D_Orifice": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP3.to_P1D_Orifice",
+          "Outlet": "P1D_Orifice.in"
+        },
+        "P1D_Orifice_to_P1D": {
+          "Type": "Direct",
+          "Inlet": "P1D_Orifice.out",
+          "Outlet": "P1D.in"
+        },
+        "P1D_to_branch_TPP4": {
+          "Type": "Direct",
+          "Inlet": "P1D.out",
+          "Outlet": "branch_TPP4.from_P1D"
+        },
+        "P1R_to_branch_TPP4": {
+          "Type": "Direct",
+          "Inlet": "P1R.out",
+          "Outlet": "branch_TPP4.from_P1R"
+        },
+        "P3C_to_branch_TPP2": {
+          "Type": "Direct",
+          "Inlet": "P3C.out",
+          "Outlet": "branch_TPP2.from_P3C"
+        },
+        "branch_TPP2_to_P2D": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP2.to_P2D",
+          "Outlet": "P2D.in"
+        },
+        "branch_TPP2_to_P2R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPP2.to_P2R",
+          "Outlet": "P2R.in"
+        },
+        "P2D_to_P2D_Orifice": {
+          "Type": "Direct",
+          "Inlet": "P2D.out",
+          "Outlet": "P2D_Orifice.in"
+        },
+        "P2D_Orifice_to_branch_TPP4": {
+          "Type": "Direct",
+          "Inlet": "P2D_Orifice.out",
+          "Outlet": "branch_TPP4.from_P2D_Orifice"
+        },
+        "P2R_to_branch_TPP4": {
+          "Type": "Direct",
+          "Inlet": "P2R.out",
+          "Outlet": "branch_TPP4.from_P2R"
+        }
+      }
+    },
+    "302_RAM_A": {
+      "Type": "SubCircuit",
+      "Components": {
+        "A1D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "A1D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "A1DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A1DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A1DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A2D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "A2D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "A2DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A2DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A2DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A3D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "A3D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "A3DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A3DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A3DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A1R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "A1RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A1RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A1RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A2R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "A2RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A2RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A2RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A3R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "A3RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A3RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A3RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "A4R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "A4RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "A4RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "A4RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "branch_TPA1": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_A1D",
+            "from_A2D",
+            "to_A3D",
+            "to_A3R",
+            "to_branch_Intens_D"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPA1",
+              "Type": "Pressure",
+              "Location": "from_A1D"
+            }
+          ]
+        },
+        "branch_Tank_302": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_A2R",
+            "from_A1R",
+            "from_A3R",
+            "from_A4R",
+            "to_branch_Tank"
+          ]
+        },
+        "branch_LP_302": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_A2R",
+            "to_A2D",
+            "from_branch_TPP3",
+            "to_branch_LP_303"
+          ]
+        },
+        "branch_HP_302": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_A1R",
+            "to_A1D",
+            "from_branch_TPP2",
+            "to_branch_HP_303"
+          ]
+        },
+        "branch_TPV2_302": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_A3D",
+            "to_A4R"
+          ]
+        }
+      },
+      "Connections": {
+        "branch_LP_302_to_A2R": {
+          "Type": "Direct",
+          "Inlet": "branch_LP_302.to_A2R",
+          "Outlet": "A2R.in"
+        },
+        "A2R_to_branch_Tank_302": {
+          "Type": "Direct",
+          "Inlet": "A2R.out",
+          "Outlet": "branch_Tank_302.from_A2R"
+        },
+        "branch_LP_302_to_A2D": {
+          "Type": "Direct",
+          "Inlet": "branch_LP_302.to_A2D",
+          "Outlet": "A2D.in"
+        },
+        "branch_HP_302_to_A1R": {
+          "Type": "Direct",
+          "Inlet": "branch_HP_302.to_A1R",
+          "Outlet": "A1R.in"
+        },
+        "A1R_to_branch_Tank_302": {
+          "Type": "Direct",
+          "Inlet": "A1R.out",
+          "Outlet": "branch_Tank_302.from_A1R"
+        },
+        "branch_HP_302_to_A1D": {
+          "Type": "Direct",
+          "Inlet": "branch_HP_302.to_A1D",
+          "Outlet": "A1D.in"
+        },
+        "A1D_to_branch_TPA1": {
+          "Type": "Direct",
+          "Inlet": "A1D.out",
+          "Outlet": "branch_TPA1.from_A1D"
+        },
+        "A2D_to_branch_TPA1": {
+          "Type": "Direct",
+          "Inlet": "A2D.out",
+          "Outlet": "branch_TPA1.from_A2D"
+        },
+        "branch_TPA1_to_A3D": {
+          "Type": "Direct",
+          "Inlet": "branch_TPA1.to_A3D",
+          "Outlet": "A3D.in"
+        },
+        "branch_TPA1_to_A3R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPA1.to_A3R",
+          "Outlet": "A3R.in"
+        },
+        "A3R_to_branch_Tank_302": {
+          "Type": "Direct",
+          "Inlet": "A3R.out",
+          "Outlet": "branch_Tank_302.from_A3R"
+        },
+        "A3D_to_branch_TPV2_302": {
+          "Type": "Direct",
+          "Inlet": "A3D.out",
+          "Outlet": "branch_TPV2_302.from_A3D"
+        },
+        "branch_TPV2_302_to_A4R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPV2_302.to_A4R",
+          "Outlet": "A4R.in"
+        },
+        "A4R_to_branch_Tank_302": {
+          "Type": "Direct",
+          "Inlet": "A4R.out",
+          "Outlet": "branch_Tank_302.from_A4R"
+        }
+      }
+    },
+    "303_RAM_B": {
+      "Type": "SubCircuit",
+      "Components": {
+        "B1D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "B1D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "B1DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B1DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B1DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B2D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "B2D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "B2DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B2DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B2DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B3D": {
+          "Type": "BucherValve",
+          "Inputs": [
+            {
+              "Name": "B3D_signal",
+              "Type": "ValveSignal"
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "B3DFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B3DPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B3DPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B1R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "B1RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B1RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B1RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B2R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "B2RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B2RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B2RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B3R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "B3RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B3RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B3RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "B4R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 32000000.0,
+          "Outputs": [
+            {
+              "Name": "B4RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "B4RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "B4RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "601_HP_ACCUMULATOR": {
+          "Type": "Accumulator",
+          "TotalVolume": 0.002,
+          "MaxOilVolume": 0.0023,
+          "HeatRatio": 1.4,
+          "PrechargePressure": 20000000.0,
+          "EndStop": true,
+          "Outputs": [
+            {
+              "Name": "601_HP_ACCUMULATORVolume",
+              "Type": "Volume"
+            },
+            {
+              "Name": "601_HP_ACCUMULATORPressure",
+              "Type": "Pressure"
+            },
+            {
+              "Name": "601_HP_ACCUMULATORFlowrate",
+              "Type": "Flowrate"
+            }
+          ]
+        },
+        "602_LP_ACCUMULATOR": {
+          "Type": "Accumulator",
+          "TotalVolume": 0.005,
+          "MaxOilVolume": 0.0023,
+          "HeatRatio": 1.4,
+          "PrechargePressure": 12500000.0,
+          "EndStop": true,
+          "Outputs": [
+            {
+              "Name": "602_LP_ACCUMULATORVolume",
+              "Type": "Volume"
+            },
+            {
+              "Name": "602_LP_ACCUMULATORPressure",
+              "Type": "Pressure"
+            },
+            {
+              "Name": "602_LP_ACCUMULATORFlowrate",
+              "Type": "Flowrate"
+            }
+          ]
+        },
+        "branch_TPB1": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_B1D",
+            "from_B2D",
+            "to_B3D",
+            "to_B3R"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPB1",
+              "Type": "Pressure",
+              "Location": "from_B1D"
+            }
+          ]
+        },
+        "branch_Tank_303": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_B2R",
+            "from_B1R",
+            "from_B3R",
+            "from_B4R",
+            "to_branch_Tank"
+          ]
+        },
+        "branch_LP_303": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_B2R",
+            "to_B2D",
+            "to_602_LP_ACCUMULATOR",
+            "from_branch_LP_302"
+          ]
+        },
+        "branch_HP_303": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_B1R",
+            "to_B1D",
+            "to_601_HP_ACCUMULATOR",
+            "from_branch_HP_302"
+          ]
+        },
+        "branch_TPV2_303": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_B3D",
+            "to_B4R"
+          ]
+        }
+      },
+      "Connections": {
+        "branch_LP_303_to_B2R": {
+          "Type": "Direct",
+          "Inlet": "branch_LP_303.to_B2R",
+          "Outlet": "B2R.in"
+        },
+        "B2R_to_branch_Tank_303": {
+          "Type": "Direct",
+          "Inlet": "B2R.out",
+          "Outlet": "branch_Tank_303.from_B2R"
+        },
+        "branch_LP_303_to_B2D": {
+          "Type": "Direct",
+          "Inlet": "branch_LP_303.to_B2D",
+          "Outlet": "B2D.in"
+        },
+        "branch_HP_303_to_B1R": {
+          "Type": "Direct",
+          "Inlet": "branch_HP_303.to_B1R",
+          "Outlet": "B1R.in"
+        },
+        "B1R_to_branch_Tank_303": {
+          "Type": "Direct",
+          "Inlet": "B1R.out",
+          "Outlet": "branch_Tank_303.from_B1R"
+        },
+        "branch_HP_303_to_B1D": {
+          "Type": "Direct",
+          "Inlet": "branch_HP_303.to_B1D",
+          "Outlet": "B1D.in"
+        },
+        "B1D_to_branch_TPB1": {
+          "Type": "Direct",
+          "Inlet": "B1D.out",
+          "Outlet": "branch_TPB1.from_B1D"
+        },
+        "B2D_to_branch_TPB1": {
+          "Type": "Direct",
+          "Inlet": "B2D.out",
+          "Outlet": "branch_TPB1.from_B2D"
+        },
+        "branch_TPB1_to_B3D": {
+          "Type": "Direct",
+          "Inlet": "branch_TPB1.to_B3D",
+          "Outlet": "B3D.in"
+        },
+        "branch_TPB1_to_B3R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPB1.to_B3R",
+          "Outlet": "B3R.in"
+        },
+        "B3R_to_branch_Tank_303": {
+          "Type": "Direct",
+          "Inlet": "B3R.out",
+          "Outlet": "branch_Tank_303.from_B3R"
+        },
+        "B3D_to_branch_TPV2_303": {
+          "Type": "Direct",
+          "Inlet": "B3D.out",
+          "Outlet": "branch_TPV2_303.from_B3D"
+        },
+        "branch_TPV2_303_to_B4R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPV2_303.to_B4R",
+          "Outlet": "B4R.in"
+        },
+        "B4R_to_branch_Tank_303": {
+          "Type": "Direct",
+          "Inlet": "B4R.out",
+          "Outlet": "branch_Tank_303.from_B4R"
+        },
+        "branch_HP_303_to_601_HP_ACCUMULATOR": {
+          "Type": "Direct",
+          "Inlet": "branch_HP_303.to_601_HP_ACCUMULATOR",
+          "Outlet": "601_HP_ACCUMULATOR.in"
+        },
+        "branch_LP_303_to_602_LP_ACCUMULATOR": {
+          "Type": "Direct",
+          "Inlet": "branch_LP_303.to_602_LP_ACCUMULATOR",
+          "Outlet": "602_LP_ACCUMULATOR.in"
+        }
+      }
+    },
+    "307_MOOG": {
+      "Type": "SubCircuit",
+      "Components": {
+        "M1P": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_branch_TPM1",
+            "from_branch_TPM2",
+            "from_M1C",
+            "to_branch_Tank_307"
+          ]
+        },
+        "M1C": {
+          "Type": "CV_rk1",
+          "Outputs": [
+            {
+              "Name": "M1CFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "M1CPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "M1CPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "I1C": {
+          "Type": "CV_rk1",
+          "Outputs": [
+            {
+              "Name": "I1CFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "I1CPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "I1CPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "M1R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 60000000.0,
+          "Outputs": [
+            {
+              "Name": "M1RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "M1RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "M1RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "M2R": {
+          "Type": "PRV_DB4E",
+          "CrackPressure": 60000000.0,
+          "Outputs": [
+            {
+              "Name": "M2RFlowrate",
+              "Type": "Flowrate"
+            },
+            {
+              "Name": "M2RPressureIn",
+              "Type": "Pressure",
+              "Location": "in"
+            },
+            {
+              "Name": "M2RPressureOut",
+              "Type": "Pressure",
+              "Location": "out"
+            }
+          ]
+        },
+        "110_Intensifier": {
+          "Type": "IntensifierRam",
+          "Layout": "PistonRodPiston",
+          "StrokeLength": 0.067,
+          "EndStop": true,
+          "HardStopStiffness": 600000000000.0,
+          "Outputs": [
+            {
+              "Name": "110_IntensifierStroke",
+              "Type": "Stroke"
+            },
+            {
+              "Name": "110_IntensifierStrokeDot",
+              "Type": "StrokeRate"
+            }
+          ],
+          "Friction": {
+            "StaticFrictionForce": 150,
+            "DynamicFrictionForce": 100,
+            "ViscousFrictionForce": 100,
+            "StribeckVelocity": 0.0125
+          },
+          "BoreDiameterAB": 0.05,
+          "RodDiameterBC": 0.025,
+          "BoreDiameterCD": 0.05
+        },
+        "Intens_A_Endcap": {
+          "Type": "Endcap",
+          "Outputs": [
+            {
+              "Name": "Intens_A_Endcap_Pressure",
+              "Type": "Pressure"
+            }
+          ]
+        },
+        "branch_TPM1": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_M1R",
+            "to_M1P",
+            "to_110_Intensifier"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPM1",
+              "Type": "Pressure",
+              "Location": "to_M1R"
+            }
+          ]
+        },
+        "branch_TPM2": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_M2R",
+            "to_M1P",
+            "to_110_Intensifier"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPM2",
+              "Type": "Pressure",
+              "Location": "to_M2R"
+            }
+          ]
+        },
+        "branch_Tank_307": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_M1R",
+            "from_M2R",
+            "from_M1P"
+          ]
+        },
+        "branch_Intens_D": {
+          "Type": "Branch",
+          "PortNames": [
+            "from_I1C",
+            "to_110_Intensifier",
+            "from_branch_TPA1"
+          ]
+        }
+      },
+      "Connections": {
+        "branch_TPM1_to_M1R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM1.to_M1R",
+          "Outlet": "M1R.in"
+        },
+        "branch_TPM1_to_M1P": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM1.to_M1P",
+          "Outlet": "M1P.from_branch_TPM1"
+        },
+        "branch_TPM2_to_M2R": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM2.to_M2R",
+          "Outlet": "M2R.in"
+        },
+        "branch_TPM2_to_M1P": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM2.to_M1P",
+          "Outlet": "M1P.from_branch_TPM2"
+        },
+        "M1C_to_M1P": {
+          "Type": "Direct",
+          "Inlet": "M1C.out",
+          "Outlet": "M1P.from_M1C"
+        },
+        "M1R_to_branch_Tank_307": {
+          "Type": "Direct",
+          "Inlet": "M1R.out",
+          "Outlet": "branch_Tank_307.from_M1R"
+        },
+        "M2R_to_branch_Tank_307": {
+          "Type": "Direct",
+          "Inlet": "M2R.out",
+          "Outlet": "branch_Tank_307.from_M2R"
+        },
+        "M1P_to_branch_Tank_307": {
+          "Type": "Direct",
+          "Inlet": "M1P.to_branch_Tank_307",
+          "Outlet": "branch_Tank_307.from_M1P"
+        },
+        "I1C_to_branch_Intens_D": {
+          "Type": "Direct",
+          "Inlet": "I1C.out",
+          "Outlet": "branch_Intens_D.from_I1C"
+        },
+        "branch_TPM1_to_110_Intensifier": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM1.to_110_Intensifier",
+          "Outlet": "110_Intensifier.B"
+        },
+        "branch_TPM2_to_110_Intensifier": {
+          "Type": "Direct",
+          "Inlet": "branch_TPM2.to_110_Intensifier",
+          "Outlet": "110_Intensifier.C"
+        },
+        "branch_Intens_D_to_110_Intensifier": {
+          "Type": "Direct",
+          "Inlet": "branch_Intens_D.to_110_Intensifier",
+          "Outlet": "110_Intensifier.D"
+        },
+        "110_Intensifier_to_Intens_A_Endcap": {
+          "Type": "Direct",
+          "Inlet": "110_Intensifier.A",
+          "Outlet": "Intens_A_Endcap.in"
+        }
+      }
+    },
+    "400_TANK": {
+      "Type": "SubCircuit",
+      "Components": {
+        "400Tank": {
+          "Type": "Accumulator",
+          "TotalVolume": 0.02,
+          "MaxOilVolume": 0.19,
+          "HeatRatio": 1.4,
+          "PrechargePressure": 110000.0,
+          "EndStop": true,
+          "Outputs": [
+            {
+              "Name": "400TankVolume",
+              "Type": "Volume"
+            },
+            {
+              "Name": "400TankPressure",
+              "Type": "Pressure"
+            },
+            {
+              "Name": "400TankFlowrate",
+              "Type": "Flowrate"
+            }
+          ]
+        },
+        "branch_Tank": {
+          "Type": "Branch",
+          "PortNames": [
+            "to_400Tank",
+            "to_201_PUMP",
+            "from_branch_TPP4",
+            "from_branch_Tank_302",
+            "from_branch_Tank_303",
+            "to_I1C"
+          ],
+          "Outputs": [
+            {
+              "Name": "TPC1",
+              "Type": "Pressure",
+              "Location": "to_400Tank"
+            }
+          ]
+        }
+      },
+      "Connections": {
+        "branch_Tank_to_400Tank": {
+          "Type": "Direct",
+          "Inlet": "branch_Tank.to_400Tank",
+          "Outlet": "400Tank.in"
+        }
+      }
+    }
+  },
+  "Connections": {
+    "branch_Tank_to_201_PUMP": {
+      "Type": "Direct",
+      "Inlet": "branch_Tank.to_201_PUMP",
+      "Outlet": "201_PUMP.in"
+    },
+    "branch_TPP4_to_branch_Tank": {
+      "Type": "Direct",
+      "Inlet": "branch_TPP4.to_branch_Tank",
+      "Outlet": "branch_Tank.from_branch_TPP4"
+    },
+    "branch_Tank_302_to_branch_Tank": {
+      "Type": "Direct",
+      "Inlet": "branch_Tank_302.to_branch_Tank",
+      "Outlet": "branch_Tank.from_branch_Tank_302"
+    },
+    "branch_TPP3_to_branch_LP_302": {
+      "Type": "Direct",
+      "Inlet": "branch_TPP3.to_branch_LP_302",
+      "Outlet": "branch_LP_302.from_branch_TPP3"
+    },
+    "branch_TPP2_to_branch_HP_302": {
+      "Type": "Direct",
+      "Inlet": "branch_TPP2.to_branch_HP_302",
+      "Outlet": "branch_HP_302.from_branch_TPP2"
+    },
+    "branch_Tank_303_to_branch_Tank": {
+      "Type": "Direct",
+      "Inlet": "branch_Tank_303.to_branch_Tank",
+      "Outlet": "branch_Tank.from_branch_Tank_303"
+    },
+    "branch_LP_302_to_branch_LP_303": {
+      "Type": "Direct",
+      "Inlet": "branch_LP_302.to_branch_LP_303",
+      "Outlet": "branch_LP_303.from_branch_LP_302"
+    },
+    "branch_HP_302_to_branch_HP_303": {
+      "Type": "Direct",
+      "Inlet": "branch_HP_302.to_branch_HP_303",
+      "Outlet": "branch_HP_303.from_branch_HP_302"
+    },
+    "branch_TPP2_to_M1C": {
+      "Type": "Direct",
+      "Inlet": "branch_TPP2.to_M1C",
+      "Outlet": "M1C.in"
+    },
+    "branch_Tank_to_I1C": {
+      "Type": "Direct",
+      "Inlet": "branch_Tank.to_I1C",
+      "Outlet": "I1C.in"
+    },
+    "branch_TPA1_to_branch_Intens_D": {
+      "Type": "Direct",
+      "Inlet": "branch_TPA1.to_branch_Intens_D",
+      "Outlet": "branch_Intens_D.from_branch_TPA1"
+    }
+  },
+  "OilProperties": {
+    "Type": "Polynomial",
+    "Temperatures": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60
+    ],
+    "PressureBounds": [
+      0,
+      60000000.0
+    ],
+    "Density": {
+      "Order": 1,
+      "Coefficients": [
+        [
+          4.30223695e-07,
+          854.345406
+        ],
+        [
+          4.48761812e-07,
+          848.210732
+        ],
+        [
+          4.67299923e-07,
+          842.076058
+        ],
+        [
+          4.85838032e-07,
+          835.94138
+        ],
+        [
+          5.04376145e-07,
+          829.806705
+        ],
+        [
+          5.22914264e-07,
+          823.67203
+        ]
+      ]
+    },
+    "Viscosity": {
+      "Order": 2,
+      "Coefficients": [
+        [
+          9.8241637e-17,
+          2.90920484e-09,
+          0.182656952
+        ],
+        [
+          4.27737526e-17,
+          1.53299878e-09,
+          0.0943651878
+        ],
+        [
+          2.02859386e-17,
+          8.68833278e-10,
+          0.0534326101
+        ],
+        [
+          1.02934998e-17,
+          5.22059469e-10,
+          0.0325845193
+        ],
+        [
+          5.51133863e-18,
+          3.28865619e-10,
+          0.0211171098
+        ],
+        [
+          3.07963001e-18,
+          2.15251554e-10,
+          0.0143942274
+        ]
+      ]
+    },
+    "BulkModulus": {
+      "Order": 1,
+      "Coefficients": [
+        [
+          11.4,
+          1787000000.0
+        ],
+        [
+          11.4,
+          1707000000.0
+        ],
+        [
+          11.4,
+          1627000000.0
+        ],
+        [
+          11.4,
+          1547000000.0
+        ],
+        [
+          11.4,
+          1467000000.0
+        ],
+        [
+          11.4,
+          1387000000.0
+        ]
+      ]
+    }
+  },
+  "Valves": {
+    "File": "..\\..\\..\\..\\..\\Hydraulics\\ValveDatabase.json"
+  },
+  "Connectors": {
+    "File": "..\\..\\..\\..\\..\\Hydraulics\\Hoses.json"
+  }
+}
